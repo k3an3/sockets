@@ -14,7 +14,6 @@
 struct sockaddr_in remote_addr, listen_addr;
 
 void usage();
-char* send_control(int* sockfd, char* command);
 
 int main(int argc, char* argv[])
 {
