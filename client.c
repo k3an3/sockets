@@ -26,12 +26,12 @@ int main(int argc, char* argv[])
 	/* Buffer for received data */
 	char buff[2048];
 	/* Temp integer vars */
-	int n, client_sock, listen_sock, s, remote_addr_len = sizeof(remote_addr);
+	int n, sock, listen_sock, s, remote_addr_len = sizeof(remote_addr);
 
 	/* Create the socket descriptor */
-	client_sock = socket(AF_INET, SOCK_STREAM, 0);
+	sock = socket(AF_INET, SOCK_STREAM, 0);
 	/* Set socket options */
-	setsockopt(client_sock, SOL_SOCKET, SO_REUSEADDR, (void *)1, sizeof(int));
+	setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (void *)1, sizeof(int));
 
 	/* Get addr info from the given hostname/addr, save
 	 * to addrinfo struct. Replace 6010 with port. */
@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 	}
 
 	/* Attempt to connect to the server */
-	if(connect(client_sock, ai->ai_addr, ai->ai_addrlen) < 0) {
+	if(connect(sock, ai->ai_addr, ai->ai_addrlen) < 0) {
 		 perror("Could not connect");
 		 exit(1);
 	}
